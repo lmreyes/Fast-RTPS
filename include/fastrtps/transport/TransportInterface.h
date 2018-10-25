@@ -76,6 +76,9 @@ public:
     //! Must report whether the given locator is supported by this transport (typically inspecting its "kind" value).
     virtual bool IsLocatorSupported(const Locator_t&) const = 0;
 
+    //! Must report whether the given locator is allowed by this transport.
+    virtual bool IsLocatorAllowed(const Locator_t&) const = 0;
+
     //! Returns the locator describing the main (most general) channel that can write to the provided remote locator.
     virtual Locator_t RemoteToMainLocal(const Locator_t& remote) const = 0;
 
@@ -132,14 +135,14 @@ public:
 
     virtual void AddDefaultOutputLocator(LocatorList_t &defaultList) = 0;
 
-    virtual bool getDefaultMetatrafficMulticastLocators(LocatorList_t &locators, 
+    virtual bool getDefaultMetatrafficMulticastLocators(LocatorList_t &locators,
         uint32_t metatraffic_multicast_port) const = 0;
 
-    virtual bool getDefaultMetatrafficUnicastLocators(LocatorList_t &locators, 
+    virtual bool getDefaultMetatrafficUnicastLocators(LocatorList_t &locators,
         uint32_t metatraffic_unicast_port) const = 0;
 
     virtual bool getDefaultUnicastLocators(LocatorList_t &locators, uint32_t unicast_port) const = 0;
-    
+
     virtual bool fillMetatrafficMulticastLocator(Locator_t &locator, uint32_t metatraffic_multicast_port) const = 0;
 
     virtual bool fillMetatrafficUnicastLocator(Locator_t &locator, uint32_t metatraffic_unicast_port) const = 0;
